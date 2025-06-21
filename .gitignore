@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+.gradio/
+__pycache__/
+assets/
+ckpts/
+datasets/
+submissions/
+wandb/
