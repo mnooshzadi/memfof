@@ -1,3 +1,26 @@
+---
+title: MEMFOF Optical Flow
+short_description: Memory-Efficient Optical Flow — ICCV 2025 SOTA.
+emoji: 🎞️
+colorFrom: yellow
+colorTo: purple
+sdk: gradio
+sdk_version: 5.34.2
+app_file: demo.py
+license: bsd-3-clause
+tags:
+- arxiv:2506.23151
+- optical-flow-estimation
+- optical-flow
+models:
+- egorchistov/optical-flow-MEMFOF-Tartan
+- egorchistov/optical-flow-MEMFOF-Tartan-T
+- egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH
+- egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-kitti
+- egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-sintel
+- egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-spring
+---
+
 <p align="center">
   <h1 align="center">MEMFOF: High-Resolution Training for Memory-Efficient Multi-Frame Optical Flow Estimation</h1>
   <p align="center">
