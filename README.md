@@ -13,6 +13,17 @@
   <h3 align="center"><a href="https://arxiv.org/abs/2506.23151">📄 Paper</a> | <a href="https://msu-video-group.github.io/memfof">🌐 Project Page</a> | <a href="https://colab.research.google.com/github/msu-video-group/memfof/blob/dev/demo.ipynb">🚀 Colab</a> | <a href="https://huggingface.co/spaces/egorchistov/MEMFOF">🤗 Demo</a></h3>
 </p>
 
+## 🏅 Overview
+
+**MEMFOF** is a **memory-efficient optical flow method** for **Full HD video** that combines **high accuracy** with **low VRAM usage**.
+
+> [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/memfof-high-resolution-training-for-memory/optical-flow-estimation-on-spring)](https://paperswithcode.com/sota/optical-flow-estimation-on-spring?p=memfof-high-resolution-training-for-memory) <br>
+> [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/memfof-high-resolution-training-for-memory/optical-flow-estimation-on-sintel-clean)](https://paperswithcode.com/sota/optical-flow-estimation-on-sintel-clean?p=memfof-high-resolution-training-for-memory) <br>
+> [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/memfof-high-resolution-training-for-memory/optical-flow-estimation-on-sintel-final)](https://paperswithcode.com/sota/optical-flow-estimation-on-sintel-final?p=memfof-high-resolution-training-for-memory) <br>
+> [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/memfof-high-resolution-training-for-memory/optical-flow-estimation-on-kitti-2015)](https://paperswithcode.com/sota/optical-flow-estimation-on-kitti-2015?p=memfof-high-resolution-training-for-memory) <br>
+> [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/memfof-high-resolution-training-for-memory/optical-flow-estimation-on-kitti-2015-train)](https://paperswithcode.com/sota/optical-flow-estimation-on-kitti-2015-train?p=memfof-high-resolution-training-for-memory)
+
+
 ## 🛠️ Installation
 
 Our code is developed with pytorch >= 2.5.0, CUDA >= 12.6 and python >= 3.10.
