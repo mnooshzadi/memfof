@@ -26,7 +26,7 @@ def main():
         if os.path.exists(output_path):
             continue
         print(f"Downloading {output_path}")
-        snapshot_path = snapshot_download(repo_id=f"s1nglassessface/MEMFOF-{ckpt}")
+        snapshot_path = snapshot_download(repo_id=f"egorchistov/MEMFOF-{ckpt}")
         state_dict = load_file(os.path.join(snapshot_path, "model.safetensors"))
         state_dict = {"model." + k: v for k, v in state_dict.items()}
         torch.save({"state_dict": state_dict}, output_path)
