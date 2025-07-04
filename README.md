@@ -10,7 +10,7 @@
     <a href="https://linkedin.com/in/dmitriyvatolin">Dmitriy Vatolin</a>
   </p>
   <h3 align="center">ICCV 2025</h3>
-  <h3 align="center"><a href="https://arxiv.org/abs/2506.23151">📄 Paper</a> | <a href="https://msu-video-group.github.io/memfof">🌐 Project Page</a> | <a href="https://colab.research.google.com/github/msu-video-group/memfof/blob/dev/demo.ipynb">🚀 Colab</a> | <a href="https://huggingface.co/spaces/egorchistov/MEMFOF">🤗 Demo</a></h3>
+  <h3 align="center"><a href="https://arxiv.org/abs/2506.23151">📄 Paper</a> | <a href="https://msu-video-group.github.io/memfof">🌐 Project Page</a> | <a href="https://colab.research.google.com/github/msu-video-group/memfof/blob/dev/demo.ipynb">🚀 Colab</a> | <a href="https://huggingface.co/spaces/egorchistov/optical-flow-MEMFOF">🤗 Demo</a> | <a href="https://huggingface.co/collections/egorchistov/optical-flow-memfof-685695802e71b207b96d8fb8">📦 Models</a></h3>
 </p>
 
 ## 🏅 Overview
@@ -48,12 +48,12 @@ python3 demo.py
 
 ## 📦 Models
 
-- [`MEMFOF-Tartan`](https://huggingface.co/egorchistov/MEMFOF-Tartan)
-- [`MEMFOF-Tartan-T`](https://huggingface.co/egorchistov/MEMFOF-Tartan-T)
-- [`MEMFOF-Tartan-T-TSKH`](https://huggingface.co/egorchistov/MEMFOF-Tartan-T-TSKH) (✅ Recommended for real-world videos)
-- [`MEMFOF-Tartan-T-TSKH-kitti`](https://huggingface.co/egorchistov/MEMFOF-Tartan-T-TSKH-kitti)
-- [`MEMFOF-Tartan-T-TSKH-sintel`](https://huggingface.co/egorchistov/MEMFOF-Tartan-T-TSKH-sintel)
-- [`MEMFOF-Tartan-T-TSKH-spring`](https://huggingface.co/egorchistov/MEMFOF-Tartan-T-TSKH-spring)
+- [`MEMFOF-Tartan`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan)
+- [`MEMFOF-Tartan-T`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan-T)
+- [`MEMFOF-Tartan-T-TSKH`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH) (✅ Best for real videos)
+- [`MEMFOF-Tartan-T-TSKH-kitti`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-kitti)
+- [`MEMFOF-Tartan-T-TSKH-sintel`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-sintel)
+- [`MEMFOF-Tartan-T-TSKH-spring`](https://huggingface.co/egorchistov/optical-flow-MEMFOF-Tartan-T-TSKH-spring)
 
 ## 🗂️ Datasets
 

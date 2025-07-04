@@ -151,7 +151,7 @@ def download(url: str) -> str:
 @spaces.GPU(duration=60)
 def run_demo(input_path: str, model_name: str) -> str:
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
-    model = MEMFOF.from_pretrained(f"egorchistov/{model_name}").eval().to(device)
+    model = MEMFOF.from_pretrained(f"egorchistov/optical-flow-{model_name}").eval().to(device)
     output_path = tempfile.NamedTemporaryFile(suffix=".mp4").name
     process_video(model, input_path, output_path, device, progress=gr.Progress(), soft_duration=57)
     return output_path
