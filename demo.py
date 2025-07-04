@@ -177,14 +177,13 @@ def main():
 
     with gr.Blocks() as demo:
         gr.Markdown("""
-        <h1 align="center">Optical Flow Estimation with MEMFOF</h1>
+        <h1 align="center">MEMFOF: High-Resolution Training for Memory-Efficient Multi-Frame Optical Flow Estimation</h1>
 
-        <h3 align="center">ICCV 2025</h3>
-        <h3 align="center"><a href="">Paper</a> | <a href="https://msu-video-group.github.io/memfof">Project Page</a> | <a href="https://github.com/msu-video-group/memfof">Code</a> | <a href="https://colab.research.google.com/github/msu-video-group/memfof/blob/dev/demo.ipynb">Colab</a></h3>
+        <h2 align="center"><a href="https://arxiv.org/abs/2506.23151" style="text-decoration: none;">📄 Paper</a> | <a href="https://msu-video-group.github.io/memfof" style="text-decoration: none;">🌐 Project Page</a> | <a href="https://github.com/msu-video-group/memfof" style="text-decoration: none;">💻 Code</a> | <a href="https://colab.research.google.com/github/msu-video-group/memfof/blob/dev/demo.ipynb" style="text-decoration: none;">🚀 Colab</a></h2>
 
-        <p align="center">Estimate optical flow using MEMFOF — a memory-efficient optical flow model for Full HD video that combines high accuracy with low VRAM usage.</p>
+        <p align="center">Estimate optical flow using <b>MEMFOF</b> — a <b>memory-efficient optical flow model</b> for <b>Full HD video</b> that combines <b>high accuracy</b> with <b>low VRAM usage</b>.</p>
         
-        <p align="center">Please note that the processing will be automatically stopped after ~1 minute.</p>
+        <p align="center">Please note that the <b>processing will be automatically stopped after ~1 minute</b>.</p>
         """)
 
         with gr.Row():
