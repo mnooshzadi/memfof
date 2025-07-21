@@ -11,7 +11,7 @@
     "radius": 4,
     "dim": 512,
     "num_blocks": 2,
-    "iters": 8,
+    "iters": 16,
 
     "image_size": [872, 1920],
     "scale": 1,
