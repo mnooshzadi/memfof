@@ -353,11 +353,6 @@ class DataModule(pl.LightningDataModule):
                     datasets.SpringFlowDataset, {"split": "val"}
                 )
                 loader = data.DataLoader(spring, batch_size=4, **kwargs)
-            elif val_dataset == "spring-1080":
-                spring = datasets.three_frame_wrapper_val(
-                    datasets.SpringFlowDataset, {"split": "val"}
-                )
-                loader = data.DataLoader(spring, batch_size=4, **kwargs)
             else:
                 raise ValueError(f"Unknown validation dataset: {val_dataset}")
             val_dataloaders.append(loader)

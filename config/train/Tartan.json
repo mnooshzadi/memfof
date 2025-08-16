@@ -1,7 +1,7 @@
 {
     "name": "Tartan",
     "dataset": "TartanAir",
-    "val_datasets": ["spring", "spring-1080", "sintel", "kitti"],
+    "val_datasets": ["spring", "sintel", "kitti"],
     "monitor": null,
 
     "use_var": true,
