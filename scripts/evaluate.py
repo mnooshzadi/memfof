@@ -15,6 +15,7 @@ if __name__ == "__main__":
 
     trainer = pl.Trainer(
         accelerator="auto",
+        devices=1,
     )
 
     datamodule = DataModule(args)
