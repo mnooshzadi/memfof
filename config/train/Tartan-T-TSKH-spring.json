@@ -16,6 +16,7 @@
     "image_size": [1080, 1920],
     "scale": 0,
     "effective_batch_size": 32,
+    "accumulate_grad_batches": 1,
     "num_workers": 16,
     "epsilon": 1e-8,
     "lr": 4.8e-5,

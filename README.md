@@ -72,10 +72,8 @@ Please refer to [eval.sh](eval.sh) and [submission.sh](submission.sh) for more d
 
 ## 🏋️ Training
 
-Our training setup is configured for **4 nodes with 8 GPUs each**, using a fixed effective batch size.
-If you run the script on fewer resources, the per-device batch size may become too large and lead to **out-of-memory (OOM)** errors.
-
-In such cases, you’ll need to manually lower the `effective_batch_size` in the config — **note that this will affect the final results**, as training dynamics and convergence may change.
+Our training setup is configured to use a fixed effective batch size with **4 nodes 8 GPUs each**.
+You can train the model with fewer resources (no need to alter the configs), but if you encounter **out-of-memory (OOM)** errors, try increasing the `accumulate_grad_batches` parameter in the configs. For example, set it to 4 when training on a single node with 8 GPUs.
 
 Our training script is optimized for use with the slurm workload manager. A typical submission script looks like this:
 

@@ -27,12 +27,12 @@ if __name__ == "__main__":
     args = parse_args(parser)
     args = detect_cluster(args)
 
-    if args.effective_batch_size % (args.num_nodes * args.devices) != 0:
+    if args.effective_batch_size % (args.num_nodes * args.devices * args.accumulate_grad_batches) != 0:
         raise ValueError(
-            f"Requested effective_batch_size={args.effective_batch_size} can not be split into {args.num_nodes} nodes with {args.devices} devices each."
+            f"Requested effective_batch_size={args.effective_batch_size} can not be split into {args.num_nodes} nodes with {args.devices} devices each with accumulate_grad_batches={args.accumulate_grad_batches}."
         )
 
-    args.batch_size = int(args.effective_batch_size / (args.num_nodes * args.devices))
+    args.batch_size = int(args.effective_batch_size / (args.num_nodes * args.devices * args.accumulate_grad_batches))
 
     monitor = LearningRateMonitor()
     checkpoint = ModelCheckpoint(
@@ -63,7 +63,8 @@ if __name__ == "__main__":
         precision="bf16-mixed",
         max_steps=args.num_steps,
         check_val_every_n_epoch=None,
-        val_check_interval=args.val_steps,
+        val_check_interval=args.val_steps * args.accumulate_grad_batches,
+        accumulate_grad_batches=args.accumulate_grad_batches,
         callbacks=[monitor, checkpoint],
         plugins=plugins,
     )
