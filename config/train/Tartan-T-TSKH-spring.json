@@ -1,6 +1,6 @@
 {
     "name": "Tartan-T-TSKH-spring",
-    "dataset": "spring",
+    "dataset": "spring-full",
     "val_datasets": ["spring", "sintel", "kitti"],
     "monitor": null,
 

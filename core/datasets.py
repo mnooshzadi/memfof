@@ -950,7 +950,38 @@ class Middlebury(FlowDataset):
         self.extra_info = info
 
 
-def three_frame_wrapper2(dataset_class, dataset_args, add_reversed=True, invalid_images="skip"):
+def three_frame_wrapper1(dataset_class, dataset_args, add_reversed=True):
+    datasets = []
+    for cam in ["left", "right"]:
+        datasets.append(
+            dataset_class(
+                **dataset_args,
+                scene_params={
+                    "frames": [(-1, cam), (0, cam), (1, cam)],
+                    "flows": [((0, cam), (-1, cam)), ((0, cam), (1, cam))],
+                    "invalid_images": "skip",
+                },
+            )
+        )
+
+        if add_reversed:
+            datasets.append(
+                dataset_class(
+                    **dataset_args,
+                    scene_params={
+                        "frames": [(1, cam), (0, cam), (-1, cam)],
+                        "flows": [((0, cam), (1, cam)), ((0, cam), (-1, cam))],
+                        "invalid_images": "skip",
+                    },
+                )
+            )
+
+    return reduce(lambda x, y: x.add_datasets(y), datasets)
+
+
+def three_frame_wrapper2(
+    dataset_class, dataset_args, add_reversed=True, invalid_images="skip"
+):
     datasets = []
     for cam in ["left", "right"]:
         datasets.append(
@@ -1078,10 +1109,10 @@ def fetch_dataloader(args):
             "do_rotate": False,
         }
 
-        clean_dataset = three_frame_wrapper2(
+        clean_dataset = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_cleanpass"}
         )
-        final_dataset = three_frame_wrapper2(
+        final_dataset = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_finalpass"}
         )
 
@@ -1131,7 +1162,7 @@ def fetch_dataloader(args):
             "do_flip": True,
             "do_rotate": False,
         }
-        train_dataset = three_frame_wrapper2(
+        train_dataset = three_frame_wrapper1(
             SpringFlowDataset, {"aug_params": aug_params, "subsample_groundtruth": True}
         )
 
@@ -1147,7 +1178,7 @@ def fetch_dataloader(args):
         train_dataset = reduce(
             lambda x, y: x.add_datasets(y),
             [
-                three_frame_wrapper2(
+                three_frame_wrapper1(
                     SpringFlowDataset,
                     {
                         "split": cur_sp,
@@ -1180,10 +1211,10 @@ def fetch_dataloader(args):
             "do_rotate": False,
         }
 
-        things_clean = three_frame_wrapper2(
+        things_clean = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_cleanpass"}
         )
-        things_final = three_frame_wrapper2(
+        things_final = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_finalpass"}
         )
         things = things_clean + things_final
@@ -1236,10 +1267,10 @@ def fetch_dataloader(args):
             "do_rotate": False,
         }
 
-        things_clean = three_frame_wrapper2(
+        things_clean = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_cleanpass"}
         )
-        things_final = three_frame_wrapper2(
+        things_final = three_frame_wrapper1(
             FlyingThings3D, {"aug_params": aug_params, "dstype": "frames_finalpass"}
         )
         things = things_clean + things_final
@@ -1330,8 +1361,7 @@ def fetch_dataloader(args):
                         "aug_params": aug_params,
                         "split": current_split,
                         "dstype": "clean",
-                    },
-                    invalid_images="clip",
+                    }
                 )
                 for current_split in ["train", "val"]
             ],
@@ -1345,8 +1375,7 @@ def fetch_dataloader(args):
                         "aug_params": aug_params,
                         "split": current_split,
                         "dstype": "final",
-                    },
-                    invalid_images="clip",
+                    }
                 )
                 for current_split in ["train", "val"]
             ],
