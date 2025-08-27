@@ -75,6 +75,9 @@ Please refer to [eval.sh](eval.sh) and [submission.sh](submission.sh) for more d
 Our training setup is configured to use a fixed effective batch size with **4 nodes 8 GPUs each**.
 You can train the model with fewer resources (no need to alter the configs), but if you encounter **out-of-memory (OOM)** errors, try increasing the `accumulate_grad_batches` parameter in the configs. For example, set it to 4 when training on a single node with 8 GPUs.
 
+By default training is configured for submissions using the `*-full` versions of the benchmark datasets.
+For experiments and ablations however, it is recommended to switch to the versions without the `-full` postfix to get validation results on a separate validation set.
+
 Our training script is optimized for use with the slurm workload manager. A typical submission script looks like this:
 
 ```shell
