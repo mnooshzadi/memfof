@@ -1,5 +1,8 @@
+import os
 import subprocess
 import time
+import numpy as np
+import struct
 
 import gradio as gr
 import spaces
@@ -12,6 +15,19 @@ from tqdm import tqdm
 from core.utils.flow_viz import flow_to_image
 from core.memfof import MEMFOF
 
+# Write .flo file
+# Code adapted from https://rb.gy/0pzbhb
+def flow_write_flo(flow, filepath):
+    with open(filepath, "wb") as f:
+        SENTINEL = 1666666800.0  # Only here to look like Middlebury original files
+        height, width, _ = flow.shape
+
+        image = flow.copy()
+        image[np.isnan(image)] = SENTINEL
+
+        f.write(b'PIEH')
+        f.write(struct.pack("II", width, height))
+        image.astype(np.float32).tofile(f)
 
 AVAILABLE_MODELS = [
     "MEMFOF-Tartan",
@@ -21,7 +37,6 @@ AVAILABLE_MODELS = [
     "MEMFOF-Tartan-T-TSKH-sintel",
     "MEMFOF-Tartan-T-TSKH-spring",
 ]
-
 
 class FFmpegWriter:
     def __init__(self, output_path: str, width: int, height: int, fps: float):
@@ -91,6 +106,8 @@ def process_video(
     frames = []
     fmap_cache = [None] * 3
 
+    idx = 0
+
     pbar = tqdm(range(total_frames - 1), total=total_frames - 1)
     if progress is not None:
         pbar = progress.tqdm(pbar)
@@ -123,9 +140,11 @@ def process_video(
             output = model(frames_tensor, fmap_cache=fmap_cache)
 
             forward_flow = output["flow"][-1][:, 1]  # FW [1, 2, H, W]
+            forward_flow = forward_flow.squeeze(dim=0).permute(1, 2, 0).cpu().numpy()
+
+            flow_write_flo(forward_flow, os.path.join(os.path.split(output_path)[0], f'flo_{idx:04d}.flo'))
             flow_vis = flow_to_image(
-                forward_flow.squeeze(dim=0).permute(1, 2, 0).cpu().numpy(),
-                rad_min=0.02 * (height ** 2 + width ** 2) ** 0.5,
+                forward_flow, rad_min=0.02 * (height ** 2 + width ** 2) ** 0.5,
             )
             writer.write_frame(flow_vis)
 
@@ -134,6 +153,7 @@ def process_video(
             fmap_cache.append(None)
 
             frames.pop(0)
+            idx += 1
 
     cap.release()
 
